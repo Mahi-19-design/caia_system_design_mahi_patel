@@ -1,6 +1,6 @@
 // middle ware 
 
-// auth 
+// auth middlewares 
 const Joi = require('joi');
 
 const registerSchema = Joi.object({
