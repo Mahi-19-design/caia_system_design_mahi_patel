@@ -71,7 +71,7 @@ The server will start locally and you can test APIs using tools like Postman.
 
 ---
 
-## ✨ Future Improvements
+## ✨Implementations
 
 *  Add views / trending concepts logic
 *  Implement authentication (JWT)
