@@ -181,51 +181,51 @@ const getEngagement = async (req, res) => {
     }
 };
 
-const getApiPerformance = async (req, res) => {
-    try {
-        // Mocked APM data
-        const performance = {
-            averageResponseTime: "45ms",
-            uptime: "99.98%",
-            activeConnections: Math.floor(Math.random() * 500) + 100,
-            requestsPerMinute: Math.floor(Math.random() * 2000) + 500,
-            errorRate: "0.12%"
-        };
-        res.status(200).json({ msg: "success", data: performance });
-    } catch (error) {
-        res.status(500).json({ msg: error.message });
-    }
-};
+// const getApiPerformance = async (req, res) => {
+//     try {
+//         // Mocked APM data
+//         const performance = {
+//             averageResponseTime: "45ms",
+//             uptime: "99.98%",
+//             activeConnections: Math.floor(Math.random() * 500) + 100,
+//             requestsPerMinute: Math.floor(Math.random() * 2000) + 500,
+//             errorRate: "0.12%"
+//         };
+//         res.status(200).json({ msg: "success", data: performance });
+//     } catch (error) {
+//         res.status(500).json({ msg: error.message });
+//     }
+// };
 
-const getDatabasePerformance = async (req, res) => {
-    try {
-        // We can fetch real DB stats using mongoose.connection.db.stats()
-        if (mongoose.connection.readyState === 1 && mongoose.connection.db) {
-            const dbStats = await mongoose.connection.db.stats();
-            res.status(200).json({ msg: "success", data: dbStats });
-        } else {
-            res.status(500).json({ msg: "Database connection not ready" });
-        }
-    } catch (error) {
-        res.status(500).json({ msg: error.message });
-    }
-};
+// const getDatabasePerformance = async (req, res) => {
+//     try {
+//         // We can fetch real DB stats using mongoose.connection.db.stats()
+//         if (mongoose.connection.readyState === 1 && mongoose.connection.db) {
+//             const dbStats = await mongoose.connection.db.stats();
+//             res.status(200).json({ msg: "success", data: dbStats });
+//         } else {
+//             res.status(500).json({ msg: "Database connection not ready" });
+//         }
+//     } catch (error) {
+//         res.status(500).json({ msg: error.message });
+//     }
+// };
 
-const getCacheHitRate = async (req, res) => {
-    try {
-        // Mocked Cache metrics
-        const hitRate = (Math.random() * (95 - 80) + 80).toFixed(2); // Random between 80% and 95%
-        const cacheMetrics = {
-            cacheHitRate: `${hitRate}%`,
-            cacheMisses: Math.floor(Math.random() * 500),
-            memoryUsage: "256MB",
-            evictions: Math.floor(Math.random() * 100)
-        };
-        res.status(200).json({ msg: "success", data: cacheMetrics });
-    } catch (error) {
-        res.status(500).json({ msg: error.message });
-    }
-};
+// const getCacheHitRate = async (req, res) => {
+//     try {
+//         // Mocked Cache metrics
+//         const hitRate = (Math.random() * (95 - 80) + 80).toFixed(2); // Random between 80% and 95%
+//         const cacheMetrics = {
+//             cacheHitRate: `${hitRate}%`,
+//             cacheMisses: Math.floor(Math.random() * 500),
+//             memoryUsage: "256MB",
+//             evictions: Math.floor(Math.random() * 100)
+//         };
+//         res.status(200).json({ msg: "success", data: cacheMetrics });
+//     } catch (error) {
+//         res.status(500).json({ msg: error.message });
+//     }
+// };
 
 module.exports = {
     getTotalConcepts,
