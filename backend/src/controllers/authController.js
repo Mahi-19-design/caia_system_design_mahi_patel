@@ -159,19 +159,13 @@ const resetPassword = async (req, res) => {
       return res.status(400).json({ msg: 'Invalid or expired token' });
     }
 
-    // Hash new password using bcrypt
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
+    // Set the clear text password and let pre('save') hash it
+    user.password = password; 
     
     // Clear reset tokens
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
 
-    // By default, save will re-hash it because of pre('save'). We shouldn't double hash.
-    // However, our pre('save') uses `this.isModified('password')`.
-    // Wait, if we set user.password here, it triggers pre('save'). Let's just set the clear text password and let pre('save') hash it!
-    user.password = password; 
-    
     await user.save();
 
     res.status(200).json({ msg: 'Password reset successful' });
