@@ -1,35 +1,50 @@
+// auth validation
+const Joi = require('joi');
 
+const registerSchema = Joi.object({
+  name: Joi.string().min(3).max(50).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required()
+});
 
-//auth validation 
-const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
+});
 
-const authenticateUser = async (req, res, next) => {
-  // Check header
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ msg: 'Authentication invalid. Missing or malformed token.' });
-  }
+const updateProfileSchema = Joi.object({
+  name: Joi.string().min(3).max(50),
+  email: Joi.string().email()
+}).min(1);
 
-  const token = authHeader.split(' ')[1];
+const forgotPasswordSchema = Joi.object({
+  email: Joi.string().email().required()
+});
 
-  try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET || 'supersecretkey');
-    // Attach the user to the request
-    req.user = { userId: payload.userId, name: payload.name, role: payload.role };
-    next();
-  } catch (error) {
-    return res.status(401).json({ msg: 'Authentication invalid. Token verification failed.' });
-  }
-};
+const resetPasswordSchema = Joi.object({
+  token: Joi.string().required(),
+  password: Joi.string().min(6).required()
+});
 
-const authorizeRoles = (...roles) => {
+const verifyEmailSchema = Joi.object({
+  token: Joi.string().required()
+});
+
+const validateRequest = (schema) => {
   return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return res.status(403).json({ msg: 'Unauthorized to access this route' });
+    const { error } = schema.validate(req.body);
+    if (error) {
+      return res.status(400).json({ msg: error.details[0].message });
     }
     next();
   };
 };
 
-module.exports = { authenticateUser, authorizeRoles };
+module.exports = {
+  validateRegister: validateRequest(registerSchema),
+  validateLogin: validateRequest(loginSchema),
+  validateUpdateProfile: validateRequest(updateProfileSchema),
+  validateForgotPassword: validateRequest(forgotPasswordSchema),
+  validateResetPassword: validateRequest(resetPasswordSchema),
+  validateVerifyEmail: validateRequest(verifyEmailSchema)
+};
