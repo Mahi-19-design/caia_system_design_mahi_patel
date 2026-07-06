@@ -130,8 +130,9 @@ Open your browser and navigate to `http://localhost:5173`.
 ## 🌍 Deployment
 
 This application is completely deployment-ready!
-- **Backend:** Configured to be easily deployed on Render, Railway, or Heroku. It uses `process.env.PORT` and allows CORS.
-- **Frontend:** Configured to be deployed on Vercel or Netlify. Just set the `VITE_API_BASE_URL` environment variable in your Vercel dashboard to point to your live backend!
+- **Backend:** : https://caia-system-design-mahi-patel.onrender.com/
+- **Frontend:** : https://caia-system-design-mahi-patel-r3un.vercel.app/
+- **Documentation:** : https://documenter.getpostman.com/view/50840755/2sBXwntsUA
 
 ---
 
