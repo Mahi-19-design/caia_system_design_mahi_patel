@@ -5,6 +5,13 @@ A modern, full-stack platform designed to help developers master **System Design
 Built with a clean **MVC backend** and a highly interactive **React frontend**, this project demonstrates how to build scalable, maintainable, and production-ready applications.
 
 ---
+## 🌍 Deployment
+
+* **Backend:** https://caia-system-design-mahi-patel.onrender.com/
+* **Frontend:** https://caia-system-design-mahi-patel-r3un.vercel.app/
+* **API Docs:** https://documenter.getpostman.com/view/50840755/2sBXwntsUA
+
+---
 
 ## 📖 Description
 
@@ -161,13 +168,7 @@ http://localhost:5173
 
 ---
 
-## 🌍 Deployment
 
-* **Backend:** https://caia-system-design-mahi-patel.onrender.com/
-* **Frontend:** https://caia-system-design-mahi-patel-r3un.vercel.app/
-* **API Docs:** https://documenter.getpostman.com/view/50840755/2sBXwntsUA
-
----
 
 ## 📌 Sample Concept Entry
 
